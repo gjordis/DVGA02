@@ -9,6 +9,7 @@ public class Game {
 	private SquareCollection squareCollection;
 	private GameBoard board;
 	private Ball ball;
+	private boolean fillScreen = false;
 
 	/*
 	 * referens till spelplanen som initieras "board" initerar ett
@@ -30,6 +31,11 @@ public class Game {
 		 * som bestämer antalet enheter objektets position skall påverkas.
 		 */
 		squareCollection.moveDown(1);
+		
+		// Signalerar fillScreenWithSquares(); i Draw();
+		if (ball.getY() < squareCollection.getYandSize()) {
+			fillScreen = true;
+		}
 
 		/*
 		 * Skickar med spelplanens höjd i SquareCollection-objektets metod isAtBottom();
@@ -37,6 +43,7 @@ public class Game {
 		 */
 		if (squareCollection.isAtBottom(board.getHeight())) {
 			System.exit(0);
+
 		}
 		/*
 		 * anropar Ball-objektets metod move(); skickar med parametern keyboard som
@@ -69,6 +76,14 @@ public class Game {
 		ball.draw(graphics);
 		
 		/*
+		if (fillScreen) 
+			fillScreenWithSquares(graphics);
+		*/
+			
+		
+		
+		
+		/*
 		 * tickCount test 
 		 */
 		/*for (SquareCollection box : boxes) {
@@ -79,5 +94,36 @@ public class Game {
 		// blueBox.draw(graphics);
 		// greenBox.draw(graphics);
 	}
+	
+	/*private void fillScreenWithSquares(Graphics2D graphics) {
+		int squareSize = 20; // storleken på varje ruta
+        int screenWidth = board.getWidth();
+        int screenHeight = board.getHeight();
+        Random random = new Random();
+        
+        
+        
+        for (int x = 0; x < screenWidth; x += squareSize) {
+            for (int y = 0; y < screenHeight; y += squareSize) {
+            	int boxtype = random.nextInt(3);
+            	switch(boxtype) {
+            	case 1:
+            		graphics.setColor(Color.BLUE); 
+                    graphics.fillRect(x, y, squareSize, squareSize);
+            		break;
+            	case 2:
+            		graphics.setColor(Color.GREEN); 
+                    graphics.fillRect(x, y, squareSize, squareSize);
+            		break;
+            	case 3:
+            		graphics.setColor(Color.RED); 
+                    graphics.fillRect(x, y, squareSize, squareSize);
+            		break;
+            	}
+            }
+        }
+	}*/
 
 }
+
+	

@@ -74,6 +74,13 @@ public class SquareCollection {
 		return false;
 	}
 	
+	public int getYandSize() {
+		if (!squares.isEmpty()) {
+			return squares.get(0).getY() + squares.get(0).getHeight();
+		}
+		return -1;
+	}
+	
 	public void update(Keyboard keyboard) {
 		// TODO Auto-generated method stub
 
